@@ -1,0 +1,47 @@
+import java.util.*;
+public class rps {
+	public static void main(String args[]) {
+		Scanner sc=new Scanner(System.in);
+		String choices[]= {"rock","paper","scissor"};
+		Random random=new Random();
+		int userScore=0;
+		int computerScore=0;
+		System.out.println("Welcome to the Amazing rock paper scissors game");
+		while(true) {
+			System.out.println("\n Choose one : Rock, Paper, Scissor,exit");
+			String  userchoice=sc.nextLine().toLowerCase();
+
+            if (userchoice.equals("exit")) {
+                System.out.println("\n👋 Thanks for playing!");
+                break;
+            }
+
+            if (!userchoice.equals("rock") && !userchoice.equals("paper") && !userchoice.equals("scissor")) {
+                System.out.println("❗ Invalid choice. Try again.");
+                continue;
+            }
+
+			String computerChoice=choices[random.nextInt(3)];
+			if(userchoice.equals(computerChoice)) {
+				System.out.println("OOppsss Match Draw!!..");
+			}else if(userchoice.equals("rock") && computerChoice.equals("scissor") || 
+				userchoice.equals("scissor") && computerChoice.equals("paper") || 
+				userchoice.equals("paper") && computerChoice.equals("rock")){
+				System.out.println("You win this round.....");
+				userScore++;
+			}else {
+				System.out.println("You lost this round....");
+				computerScore++;
+			}
+			System.out.println("UserScore: "+userScore +"CompuerScore: "+computerScore);
+		}
+		System.out.println("****FinalScore of the Game****");
+		if(userScore>computerScore) {
+			System.out.println("You Won The Game");
+		}else if(computerScore>userScore) {
+			System.out.println("ooppss You Lost The Match");
+		}else {
+			System.out.println("Match is Tie!....Let's Play Again....");
+		}
+	}
+}
