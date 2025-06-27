@@ -1,0 +1,83 @@
+
+import java.util.*;
+public class person {
+	protected String name;
+	protected int age;
+	
+	public person(String name,int age) {
+		this.name=name;
+		this.age=age;
+	}
+	
+	public void DisplayInfo() {
+		System.out.print("Name:"+name);
+		System.out.print("Age:"+age);
+	}
+	
+}
+
+
+
+public class Student extends Person {
+	private String course;
+	private String  id;
+	
+	public Student(String name,int age,String course,String id) {
+		super(name,age);
+		this.course=course;
+		this.id=id;
+	}
+	
+	@Override
+	public void DisplayInfo() {
+		super.DisplayInfo();
+		System.out.println("course:"+course);
+		System.out.println("id:"+id);
+	}
+	
+}
+
+
+import java.util.*;
+public class StudentManagement {
+	public static void main(String args[]) {
+		ArrayList<Student> students=new ArrayList<>();
+		Scanner sc=new Scanner(System.in);
+		int choice;
+		do {
+			System.out.println("-----STUDENT MANAGEMENT-----");
+			System.out.println("1. Add the student details");
+			System.out.println("2. Display the student Details");
+			System.out.println("3. Exit....");
+			System.out.println("Enter your choice: ");
+			choice=sc.nextInt();
+			sc.nextLine();
+			switch(choice) {
+			case 1:
+				System.out.println("Enter the student Education Details: ");
+				System.out.println("Enter the name of the student: ");
+				String name=sc.next();
+				System.out.println("Enter the age: ");
+				int age=sc.nextInt();
+				System.out.println("Enter the course of the student: ");
+				String course=sc.next();
+				System.out.println("Enter the id: ");
+				String id=sc.next();
+				Student student =new Student(name,age,course,id);
+				students.add(student);
+				System.out.println("Entered the values successfuly...");
+				break;
+			case 2:
+				System.out.println("\n.....Student List.....");
+				for(Student s:students) {
+					s.DisplayInfo();
+					System.out.println("..........");
+				}
+				break;
+			case 3:
+				System.out.println("Exitingg....");
+				break;
+			}
+		}while(choice!=3);
+	}
+}
